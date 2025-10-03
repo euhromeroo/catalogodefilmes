@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cátalogo de filmes - fase 1: cadastro manual (DOM básico)</title>
+
+    <link rel="stylesheet" renf="style.css">
+
+</head>
+<body>
+    
+<h1>Cátalogo de Filmes</h1>
+
+<form id="cadastro-filme">
+    <h2>Adicionar novo filme</h2>
+    <div>
+        <label for="Titulo">Título do Filme:</label>
+        <input type="text" id="titulo" required>
+    </div>
+
+    <div>
+        <label for="sinopse">Sinopse:</label>
+        <textarea id="sinopse" required></textarea>
+    </div>
+
+    <button type="submit">Adicionar Filme</button>
+    </form>
+
+    <hr>
+
+    <h2>Minha Lista de Filmes</h2>
+
+    <div id="lista-filmes">
+        <p>Nenhum Filme cadastrado ainda.</p>
+    </div>
+
+    <script>
+        // 1. ARMAZENAMENTO DE DADOS 
+        // Array global que irá guardar todos os fimes como objetos.
+        // Ex: [{ titulo: 'filme X', sinopse: 'sinopse Y'}]
+        const catalogo = [];
+
+        //2. CAPTURA DE ELEMENTOS DO DOM (document object model)
+        //capturamos os elementos HTML que vamos interagir, usando seus IDs.
+        const form = document.getElementById('cadastro-fime');
+        const listaFilmesContainer = document.getElementById('lista-filmes');
+
+       //--------------------------------------------------------------------------------------------------------------------
+       // FUNÇÃO DE REMOÇÃO
+       //--------------------------------------------------------------------------------------------------------------------
+       /**
+       * Remove um filme do array de dados e do elemento HTML  na tela.
+       * @param {number} indicie - a posição do filme no array 'catalogo'.
+       * @param {HTMLElent} elementoDOM - O elemento <div> do filme a ser removido da tela.
+       */
+      function removerFilme(indicie, elementoDOM) {
+        
+      }
+    
+
+    </script>
+
+</body>
+</html>
