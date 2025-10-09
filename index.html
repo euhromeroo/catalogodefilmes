@@ -51,10 +51,14 @@
        //--------------------------------------------------------------------------------------------------------------------
        /**
        * Remove um filme do array de dados e do elemento HTML  na tela.
-       * @param {number} indicie - a posição do filme no array 'catalogo'.
+       * @param {number} indice - a posição do filme no array 'catalogo'.
        * @param {HTMLElent} elementoDOM - O elemento <div> do filme a ser removido da tela.
        */
-      function removerFilme(indicie, elementoDOM) {
+      function removerFilme(indice, elementoDOM) {
+          // A. REMOÇÃO DO ARRAY (Lógica)
+          // splice(indicie, 1) remove 1 elemento a partir da posição 'indice'.
+          // Isso atualiza o array 'categoria'.
+          catalogo.slice(indice, 1);
         
       }
     
