@@ -114,11 +114,42 @@
 
         // C. ANEXAR ELEMENTOS (appendChild)
         // Monta a estrutura hierárquica:
+        // filmeDiv
+        // | - tituloH3
+        // | - sinopseP
+        // | - removerBotao
+        filmeDiv.appendChild(tituloH3);
+        filmeDiv.appendChild(sinopseP);
+        filmeDiv.appendChild(removerBotao);
 
-
-
+        // D. INSERÇÃO NO DOM FINAL
+        // Adiciona o filme montado (filmeDiv) dentro do contêiner principal na página.
+        listaFilmesContainer.appendChild(filmeDiv);
       }
-    
+
+      //-----------------------------------------------------------------------------------------------
+      // FUNÇÃO PRINCIPAL DE ADIÇÃO (Manipulador do formulário)
+      //-----------------------------------------------------------------------------------------------
+      /**
+       * Lida com o envio do formulário, captura os dados e salva o filme.
+       * @param {Event} evento - O evento de 'submit' do formulário.
+       */
+       function adicionarFilme(evento) {
+       // 3. Previne o recarregamento da página
+       // O comportamento padrão de um formulário é recarregar a página. O preventDefault() impede isso.
+       evento.preventDefault();
+
+       // 4. Captura os valores dos campos 
+       const tituloInput=document.getElementById('titulo');
+       const tituloInput= document.getElementById('sinopse');
+
+       // Cria o obejto JavaScrit com os dados 
+       const novoFilme = {
+        titulo: tituloInput.value,
+        sinopse: sinopseInput.value
+       };
+
+              }
 
     </script>
 
