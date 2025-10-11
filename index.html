@@ -149,8 +149,24 @@
         sinopse: sinopseInput.value
        };
 
-              }
+       // 5. Armazena o filme no Array
+       // O método .push() adiciona o novo objeto no final do array 'catalogo'.
+       catalogo.push(novoFilme);
 
+       // 6. Renderiza na Tela 
+       // Passamos o novo objeto e seu índice (que é sempre o último, ou seja, tamanho - 1)
+       removerFilme(novoFilme, catalogo.length - 1);
+
+       // 7. Limpa o formulário 
+       // O método .reset() limpa todos os campos do formulário para o próximo cadastro.
+       form.reset();
+    }
+
+    // 8. ESCUTANDO O EVENTO DO BOTÃO/FORMULÁRIO
+    // Anexamos  a função 'adicionarFilme' ao evento de 'submit' do formulário.
+    form.addEventListener('submit', adicionarFilme);
+
+    console.log("JavaScript Carregado. Pronto para iniciar o catálogo!");
     </script>
 
 </body>
