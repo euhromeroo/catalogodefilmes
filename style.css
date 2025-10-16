@@ -63,5 +63,38 @@ button:hover {
 /* Estilo do Pôster */
 .filme-poster {
     width: 100px;
-    height: 50px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 15px; /* Espaço entre o pôster e  o texto */
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do Bloco de informações */
+.filme-info {
+    flex-grow: 1; /* Ocupa o espaço restante */
+}
+
+.filme-info h3 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 1.2em;
+}
+
+.filme-info p{
+    font-style: normal;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Botão Remover */
+.filme-item .btn-remover {
+    background-color: #dc3545;
+    font-size: 0.8em;
+    padding: 5px 10px;
+}
+.filme-item .btn-remover:hover {
+    background-color: #c82333;
+    
 }
