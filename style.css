@@ -1,3 +1,7 @@
+/* ------------------------------------------------------- */
+/* Estilos Gerais (Body, Formulários, Botões)              */
+/* ------------------------------------------------------- */
+
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
@@ -5,22 +9,26 @@ body {
     margin: 0 auto;
     background-color: #f4f4f4;
 }
+
 h1, h2 {
     color: #333;
 }
+
 form {
     background: #fff;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
+
 input[type="text"] {
     width: 100%;
     padding: 8px;
@@ -39,19 +47,19 @@ button {
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 button:hover {
     background-color: #0056b3;
 }
 
-/* ------------------------------------------------------------------ */
-/* ESTILOS PARA A FASE 2: LISTA COM PÔSTER (Flexbox) */
-/*------------------------------------------------------------------- */
+/* ------------------------------------------------------- */
+/* Estilos para a Fase 2: Lista de Filmes (Flexbox)        */
+/* ------------------------------------------------------- */
 
-/* contêiner do Filme: Organiza imagem e texto */
+/* Contêiner do Filme: Organiza imagem e texto */
 .filme-item {
-    display: flex; /* habilita o alinhamento lado a lado */
-    align-items: flex-start; /* alinha o conteúdo ao topo */
-    
+    display: flex;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 20px;
@@ -65,12 +73,12 @@ button:hover {
     width: 100px;
     height: 150px;
     object-fit: cover;
-    margin-right: 15px; /* Espaço entre o pôster e  o texto */
+    margin-right: 15px;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo do Bloco de informações */
+/* Estilo do Bloco de Informações */
 .filme-info {
     flex-grow: 1; /* Ocupa o espaço restante */
 }
@@ -81,11 +89,11 @@ button:hover {
     font-size: 1.2em;
 }
 
-.filme-info p{
-    font-style: normal;
+.filme-info p {
     color: #555;
     margin-bottom: 15px;
     line-height: 1.4;
+    font-style: normal;
 }
 
 /* Botão Remover */
@@ -93,8 +101,37 @@ button:hover {
     background-color: #dc3545;
     font-size: 0.8em;
     padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
+
 .filme-item .btn-remover:hover {
     background-color: #c82333;
-    
+}
+
+/* ------------------------------------------------------- */
+/* Responsividade para telas menores                      */
+/* ------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .filme-item {
+        flex-direction: column; /* Organiza o filme na vertical */
+        align-items: center;
+        text-align: center;
+    }
+
+    .filme-poster {
+        width: 80%;
+        height: auto;
+        margin-bottom: 10px; /* Espaço entre a imagem e o texto */
+    }
+
+    .filme-info h3 {
+        font-size: 1.1em;
+    }
+
+    .filme-info p {
+        font-size: 0.9em;
+    }
 }
