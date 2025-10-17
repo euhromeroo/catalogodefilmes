@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Filmes - Fase 1: Cadastro Manual (DOM Básico)</title>
+<title>Catálogo de Filmes - Fase 2: Cadastro Manual Consumo de API</title>
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -13,7 +13,7 @@
 <h1>Catálogo de Filmes</h1>
 
 <form id="cadastro-filme">
-<h2>Adicionar Novo Filme</h2>
+<h2>Adicionar Novo Filme (Busca por API)</h2>
 <div>
 <label for="titulo">Título do Filme:</label>
 <input type="text" id="titulo" required>
@@ -23,7 +23,7 @@
 <textarea id="sinopse" required></textarea>
 </div>
 
-<button type="submit">Adicionar Filme</button>
+<button type="submit">Buscar e Adicionar Filme</button>
 </form>
 <hr>
 
@@ -34,19 +34,25 @@
 </div>
 
 <script>
-// 1. ARMAZENAMENTO DE DADOS
-// Array global que irá guardar todos os filmes como Objetos.
-// Ex: [{ titulo: 'Filme X', sinopse: 'Sinopse Y' }]
-const catalogo = [];
+// A CHAVE SECRETA DA API OMDb (Substitua este string pela sua chave real!)
+const API_KEY = '72dcf75a';
+
+// 1. ARMAZENAMENTO DE DADOS 
+Const catalogo = [];
 
 // 2. CAPTURA DE ELEMENTOS DO DOM (Document Object Model)
-// Capturamos os elementos HTML que vamos interagir, usando seus IDs.
-form = document.getElementById('cadastro-filme');
+const form = document.getElementById('cadastro-filme');
+const tituloInput = document.getElementById('titulo');
 const listaFilmesContainer = document.getElementById('lista-filmes');
 
-// ------------------------------------------------
-// // FUNÇÃO DE REMOÇÃO
-// ------------------------------------------------
+// ------------------------------------------------------------------
+// // FUNÇÃO DE REMOÇÃO (Mantida da fase 1)
+// ------------------------------------------------------------------
+function removerFilme(indice, elementoDOM) {
+    
+}
+
+
 /**
 * Remove um filme do array de dados e do elemento HTML na tela.
 * @param {number} indice - A posição do filme no array 'catalogo'.
