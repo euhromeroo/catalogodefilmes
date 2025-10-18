@@ -38,7 +38,7 @@
 const API_KEY = '72dcf75a';
 
 // 1. ARMAZENAMENTO DE DADOS 
-Const catalogo = [];
+const catalogo = [];
 
 // 2. CAPTURA DE ELEMENTOS DO DOM (Document Object Model)
 const form = document.getElementById('cadastro-filme');
@@ -49,74 +49,62 @@ const listaFilmesContainer = document.getElementById('lista-filmes');
 // // FUNÇÃO DE REMOÇÃO (Mantida da fase 1)
 // ------------------------------------------------------------------
 function removerFilme(indice, elementoDOM) {
-    
-}
+    catalogo.splice(indice, 1);
+    elementoDOM.remove();
 
-
-/**
-* Remove um filme do array de dados e do elemento HTML na tela.
-* @param {number} indice - A posição do filme no array 'catalogo'.
-* @param {HTMLElement} elementoDOM - O elemento <div> do filme a ser removido da tela.
-*/
-function removerFilme(indice, elementoDOM) {
-// A. REMOÇÃO DO ARRAY (Lógica)
-// splice(indice, 1) remove 1 elemento a partir da posição 'indice'.
-// Isso atualiza o array 'catalogo'.
-catalogo.splice(indice, 1);
-
-// B. REMOÇÃO DO DOM (Visual)
-// O método .remove() retira o elemento HTML da visualização do usuário.
-elementoDOM.remove();
-
-// Opcional: Atualiza a mensagem da lista se estiver vazia
-if (catalogo.length === 0) {
-listaFilmesContainer.innerHTML = '<p>Nenhum filme cadastrado ainda.</p>';
-}
-
-console.log(`Filme no índice ${indice} removido. Catálogo atualizado:`, catalogo);
+    if (catalogo.length  === 0){
+        listaFilmesContainer.innerHTML = '<p>Nenhum filme cadastrado ainda.</p>';
+    }
 }
 
 // -------------------------------------------------------------
-// FUNÇÃO DE RENDERIZAÇÃO
+// FUNÇÃO DE RENDERIZAÇÃO (Adaptada para incluir o pôster)
 // -------------------------------------------------------------
-/**
-* Cria e exibe a estrutura HTML de um filme na lista.
-* * @param {Object} filme - O objeto {titulo, sinopse} do filme.
-* @param {number} indice - O índice atual do filme no array 'catalogo'.
-*/
 function renderizarFilme(filme, indice) {
-// Remove a mensagem inicial se for o primeiro filme
-if (catalogo.length === 1) {
-listaFilmesContainer.innerHTML = '';
-}
+    if (catalogo.length === 1) {
+        listaFilmesContainer.innerHTML = '';
+    }
 
-// A. CRIAÇÃO DE ELEMENTOS HTML (document.createElement)
+    const filmeDiv = document.createElement('div');
+    filmeDiv.classList.add('filme-item');
 
-// Cria a <div> que será o container de cada filme.
-const filmeDiv = document.createElement('div');
-filmeDiv.classList.add('filme-item'); // Adiciona uma classe para estilização
+// A. Elemento Imagem (Pôster)
+const imagemPoster = document.createElement('img');
+imagemPoster.src = filme.poster && filme.poster !== 'N/A'
+                   ? filme.poster
+                   : 'https://via,placeholder.com/100x150?text=Poster+Nao+Disponivel';
+imagemPoster.alt = `Pôster do filme ${filme.titulo}`;
+imagemPoster.classList.add('filme-poster');
 
-// Cria o <h3> para o título e define seu texto.
+// B. Elementos de Texto e Info
+const infoDiv = document.createElement('div');
+infoDiv.classList.add('filme-info');
+
 const tituloH3 = document.createElement('h3');
 tituloH3.textContent = filme.titulo;
 
-// Cria o <p> para a sinopse e define seu texto.
 const sinopseP = document.createElement('p');
 sinopseP.textContent = filme.sinopse;
 
-// Cria o botão de remoção.
 const removerBotao = document.createElement('button');
 removerBotao.textContent = 'Remover';
 removerBotao.classList.add('btn-remover');
 
-// B. DEFINIÇÃO DO EVENTO DE REMOÇÃO (addEventListener)
-// Anexa a função 'removerFilme' ao clique do botão.
+// C. Evento de Remoção
 removerBotao.addEventListener('click', () => {
-// Ao clicar, chamamos a função, passando o índice (posição) e a própria <div> (filmeDiv).
-removerFilme(indice, filmeDiv);
+    const indiceAtual = catalogo.findIndex(f => f.titulo === filme.titulo);
+    if (indiceAtual > -1){
+
+
+
+PARAMOS AQUI*********************************************************************************
+
+
+
+    }
 });
 
-// C. ANEXAR ELEMENTOS (appendChild)
+
 // Monta a estrutura hierárquica:
 // filmeDiv
 // |-- tituloH3
