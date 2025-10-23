@@ -93,73 +93,63 @@ removerBotao.classList.add('btn-remover');
 // C. Evento de Remoção
 removerBotao.addEventListener('click', () => {
     const indiceAtual = catalogo.findIndex(f => f.titulo === filme.titulo);
-    if (indiceAtual > -1){
-
-
-
-PARAMOS AQUI*********************************************************************************
-
-
-
+    if (indiceAtual > -1) {
+          removerFilme(indiceAtual, filmeDiv);
     }
 });
 
+// D. Montagem do DOM
+infoDiv.appendChild(tituloH3);
+infoDiv.appendChild(sinopseP);
+infoDiv.appendChild(removerBotao);
 
-// Monta a estrutura hierárquica:
-// filmeDiv
-// |-- tituloH3
-// |-- sinopseP
-// |-- removerBotao
-filmeDiv.appendChild(tituloH3);
-filmeDiv.appendChild(sinopseP);
-filmeDiv.appendChild(removerBotao);
+filmeDiv.appendChild(imagemPoster);
+filmeDiv.appendChild(infoDiv);
 
-// D. INSERÇÃO NO DOM FINAL
-// Adiciona o filme montado (filmeDiv) dentro do container principal na página.
 listaFilmesContainer.appendChild(filmeDiv);
 }
 
 // ----------------------------------------------------------------------------------
-// FUNÇÃO PRINCIPAL DE ADIÇÃO (Manipulador do Formulário)
+// FUNÇÃO PRINCIPAL DE ADIÇÃO (Assíncrona para a API)
 // ----------------------------------------------------------------------------------
-/**
-* Lida com o envio do formulário, captura os dados e salva o filme.
-* @param {Event} evento - O evento de 'submit' do formulário.
-*/
-function adicionarFilme(evento) {
-// 3. Previne o recarregamento da página
-// O comportamento padrão de um formulário é recarregar a página. O preventDefault() impede isso.
-evento.preventDefault();
+async function adicionarFilme(evento) {
+    evento.preventDefault();
 
-// 4. Captura os valores dos campos
-const tituloInput = document.getElementById('titulo');
-const sinopseInput = document.getElementById('sinopse');
+const titulo = tituloInput.value.trim();
+if (!titulo) return;
 
-// Cria o objeto JavaScript com os dados
-const novoFilme = {
-titulo: tituloInput.value,
-sinopse: sinopseInput.value
-};
+const tituloFormatado = encodeURIComponent(titulo);
+const url = `https://www.omdbapi.com/?apikey=${API_KEY}&t=${tituloFormatado}`;
 
-// 5. Armazena o filme no Array
-// O método .push() adiciona o novo objeto no final do array 'catalogo'.
-catalogo.push(novoFilme);
+try {
+    const resposta = await fetch(url);
+    const dadosDoFilme = await resposta.json();
 
-// 6. Renderiza na Tela
-// Passamos o novo objeto e seu índice (que é sempre o último, ou seja, tamanho - 1)
-renderizarFilme(novoFilme, catalogo.length - 1);
+    if (dadosDoFilme.response === "True") {
 
-// 7. Limpa o formulário
-// O método .reset() limpa todos os campos do formulário para o próximo cadastro.
+        const novoFilme = {
+            titulo: dadosDoFilme.Title,
+            sinopse: dadosDoFilme.Plot,
+            poster: dadosDoFilme.Poster,
+        };
+
+        catalogo.push(novoFilme);
+        renderizarFilme(novoFilme, catalogo.length - 1);
+    }  else{
+        alert(`Filme não encontrado na OMDb: "${titulo}".`);
+    }
+
+} catch (error) {
+    alert('Ocorreu um erro ao tentar buscar o filme na API. Verifique sua chave.');
+    console.error('Erro de Fetch:', error);
+}
+
 form.reset();
 }
 
-
-// 8. ESCUTANDO O EVENTO DO BOTÃO/FORMULÁRIO
-// Anexamos a função 'adicionarFilme' ao evento de 'submit' do formulário.
+// 6. ESCUTANDO O EVENTO DO FORMULÁRIO
 form.addEventListener('submit', adicionarFilme);
 
-console.log("JavaScript Carregado. Pronto para iniciar o catalogo!");
 </script>
 
 </body>
