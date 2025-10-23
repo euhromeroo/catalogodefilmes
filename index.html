@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Filmes - Fase 2: Cadastro Manual Consumo de API</title>
+<title>Catálogo de Filmes</title>
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -18,11 +18,6 @@
 <label for="titulo">Título do Filme:</label>
 <input type="text" id="titulo" required>
 </div>
-<div>
-<label for="sinopse">Sinopse:</label>
-<textarea id="sinopse" required></textarea>
-</div>
-
 <button type="submit">Buscar e Adicionar Filme</button>
 </form>
 <hr>
@@ -34,16 +29,16 @@
 </div>
 
 <script>
-// A CHAVE SECRETA DA API OMDb (Substitua este string pela sua chave real!)
-const API_KEY = ' 96179cee';
+    const API_KEY = '96179cee';
+    let catalogo = JSON.parse(localStorage.getItem('catalogo')) || [];
 
-// 1. ARMAZENAMENTO DE DADOS 
-const catalogo = [];
-
-// 2. CAPTURA DE ELEMENTOS DO DOM (Document Object Model)
 const form = document.getElementById('cadastro-filme');
 const tituloInput = document.getElementById('titulo');
 const listaFilmesContainer = document.getElementById('lista-filmes');
+  PAROU AQUI #######
+
+
+
 
 // ------------------------------------------------------------------
 // // FUNÇÃO DE REMOÇÃO (Mantida da fase 1)
@@ -135,6 +130,7 @@ try {
 
         catalogo.push(novoFilme);
         renderizarFilme(novoFilme, catalogo.length - 1);
+
     }  else{
         alert(`Filme não encontrado na OMDb: "${titulo}".`);
     }
