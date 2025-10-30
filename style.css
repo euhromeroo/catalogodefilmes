@@ -49,8 +49,8 @@ button:hover {
 
 /* Conteiner do Filme: Organiza imagem e texto */
 .filme-item {
-  display: flex; /*Habilita o alinhamento lado a lado */
-  align-items: flex-start; /*Alinha o conteúdo ao topo*/
+  display: flex; /* Habilita o alinhamento lado a lado */
+  align-items: flex-start; /* Alinha o conteúdo ao topo */
  
   border: 1px solid #ddd;
   padding: 15px;
