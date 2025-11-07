@@ -8,3 +8,12 @@ const searchInput = document.querySelector('.search-input');
  *  Cria o elemento HTML de um Card de Filme com os dados da OMDB.
  * @param {Object} filme - Objeto de filme retornado pela API.
  */
+function criarCardFilme(filme) {
+    const card = document.createElement('div');
+    // Adiciona o INDB ID como um data-attribute para buscar detalhes/trailer depois
+    card.dataset.imdbId = filme.imdbId;
+
+    // Garante que o rating seja um valor presente
+    const rating = filme.imdbRating ? `⭐ ${filme.imdbRating}` : `⭐ N/A`
+    
+}
