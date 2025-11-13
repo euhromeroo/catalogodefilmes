@@ -43,4 +43,36 @@ function criarCardFilme(filme) {
   * Busca o filme na OMDB e atualiza o container.
   * @param {string} termo - Termo de busca digitado pelo usuário.
   */
- async function buscarFilmes()
+ async function buscarFilmes(termo) {
+  if (!termo) return; // Não busca se o campo estiver vazio
+
+  // Limpa a lista anterior e mostra um indicador de carregamento
+  ListaFilmesContainer.innerHTML = '<p style="text-aling: center; color: gray;">Carregando...</p>';
+
+  try {
+    // Busca na OMDB (O parâmetro 's' é para busca por termo)
+    const response = await fetch(`https://www.omdbapi.com/?s=${termo}&apikey=${OMDB_API_KEY}`);
+    const data = await response.json();
+
+    // limpa o container novamente
+    ListaFilmesContainer.innerHTML = '';
+
+    if (data.Response === 'True' && data.Search) {
+      data.Search.forEach(async (filmeBase) => {
+        // A OMDB retorna apenas dados básicos na busca (s=).
+        // Precisamos de uma segunda busca (i=) para pegar o Rating.
+        const filmeDetalhado = await buscarDetalhes(filmeBase.imdbId);
+        if (filmeDetalhado) {
+          ListaFilmesContainer.appendChild(criarCardFilme(filmeDetalhado));
+        }
+      });
+    } else {
+      ListaFilmesContainer.innerHTML = `<p style="text-aling: center;">Nenhum filme encontrado para "${termo}".</p>`;
+    }
+  } catch (error) {
+    console.error("Erro ao buscar filmes:", error);
+    ListaFilmesContainer.innerHTML = '<p style="text-aling: center; color: red;">Erro na conexão com a API.</p>';
+  }
+ }
+
+ 
